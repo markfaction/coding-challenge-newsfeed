@@ -2,7 +2,7 @@
 
 ## Getting started with the repo
 
-1. Clone it: `git clone git@github.com:on-deck/coding-challenge-newsfeed.git`
+1. Clone it: `git clone git@github.com:markfaction/coding-challenge-newsfeed.git`
 2. Open the folder: `cd coding-challenge-newsfeed`
 3. Install the dependencies: `yarn install`
 4. Run the dev server: `yarn dev`
