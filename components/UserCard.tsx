@@ -2,18 +2,10 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import Card from './Card'
 import Markdown from './Markdown'
+import {User} from '../common/types';
 
 type Props = {
   user: User;
-}
-
-type User = {
-  id: number;
-  name: string;
-  bio: string;
-  fellowship: "fellows" | "angels" | "writers";
-  avatar_url: string;
-  projects: Project[];
 }
 
 type Project = {
