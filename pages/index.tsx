@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout from 'components/Layout'
-import {FeedType} from '../common';
+import {FeedType} from '../common/enums';
 
 export default function Home() {
   return (
