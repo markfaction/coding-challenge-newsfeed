@@ -1,15 +1,16 @@
 import { useRouter } from "next/router";
-import {User, Project} from '../../common/types';
+import {User, Project, Announcement} from '../../common/types';
 import Layout from '../../components/Layout';
 import UserCard from '../../components/UserCard';
 import ProjectCard from '../../components/ProjectCard';
+import AnnouncementCard from '../../components/AnnouncementCard';
 
 
 type FeedItem = {
     id: number,
     created: Date,
     type: "user" | "project" | "announcement",
-    value: User | Project,
+    value: User | Project | Announcement,
 }
 
 // Dummy data setup to test newsfeed UI (to be wired up to backend later)
@@ -42,6 +43,18 @@ feedItems.push({
     }
 });
 
+feedItems.push({
+    id: 789,
+    created: new Date('20.4.2022'),
+    type: 'announcement',
+    value: {
+        id: 5,
+        fellowship: 'all',
+        title: 'Test Announcement',
+        body: 'This is a public announcement',
+    }
+})
+
 // Return the correct card to be rendered, based on the feed item type
 const displayFeedItems = () => {
     if(feedItems && feedItems.length > 0) {
@@ -53,6 +66,10 @@ const displayFeedItems = () => {
                 }
                 case 'project': {
                     return <ProjectCard project={item.value as Project} />
+                    break;
+                }
+                case 'announcement': {
+                    return <AnnouncementCard announcement={item.value as Announcement} />
                     break;
                 }
                 default: {
