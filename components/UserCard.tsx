@@ -8,7 +8,7 @@ type Props = {
   user: User;
 }
 
-type Project = {
+type UserProject = {
   id: number;
   name: string;
   icon_url: string;
@@ -67,7 +67,7 @@ const ColumnRight = styled.div`
   flex-basis: 14rem;
 `
 
-function Project({project}: {project: Project}) {
+function Project({project}: {project: UserProject}) {
   return (
     <ProjectContainer>
       <ProjectColumnLeft>
