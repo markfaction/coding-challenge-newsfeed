@@ -58,15 +58,15 @@ const displayFeedItems = (feedItems: Array<FeedItem>) => {
         return feedItems.map(item => {
             switch(item.type) {
                 case 'user': {
-                    return <UserCard user={item.value as User} />
+                    return <UserCard key={item.id} user={item.value as User} />
                     break;
                 }
                 case 'project': {
-                    return <ProjectCard project={item.value as Project} />
+                    return <ProjectCard key={item.id} project={item.value as Project} />
                     break;
                 }
                 case 'announcement': {
-                    return <AnnouncementCard announcement={item.value as Announcement} />
+                    return <AnnouncementCard key={item.id} announcement={item.value as Announcement} />
                     break;
                 }
                 default: {

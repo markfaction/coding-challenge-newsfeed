@@ -4,7 +4,7 @@ import { Announcement } from './announcement';
 
 
 export type FeedItem = {
-    id: number,
+    id: string,
     created: Date,
     type: "user" | "project" | "announcement",
     value: User | Project | Announcement,
