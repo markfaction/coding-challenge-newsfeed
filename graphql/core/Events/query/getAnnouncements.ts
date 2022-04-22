@@ -21,3 +21,14 @@ export async function getAnnouncementsForFounders(): Promise<AnnouncementRow[]> 
     }
     return announcements;
 }
+
+export async function getAnnouncementsForAngels(): Promise<AnnouncementRow[]> {
+    const announcements: Array<AnnouncementRow> | undefined = await db.getAll(
+        "SELECT * FROM announcements WHERE fellowship IN ('all', 'angels')",
+        []
+    )
+    if (!announcements) {
+        throw new Error(`Announcements not found for angels`);
+    }
+    return announcements;
+}

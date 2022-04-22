@@ -13,10 +13,7 @@ const FEED_ITEMS_QUERY = gql`
     feedItems(feedType: $feedType) {
       id
       created
-      type<Link href={{
-        pathname: '/',
-        query: {},
-      }}>Back To Home Page</Link>
+      type
       value {
         __typename
         ... on User {
