@@ -19,7 +19,7 @@ export default class FellowShipEventsLoader {
             const sortedFeedItems = items.sort(
                 (feedItemOne, feedItemTwo) => feedItemTwo.created.getTime() - feedItemOne.created.getTime(),
               );
-
+            
             return sortedFeedItems;
         } catch (error) {
             console.log('Error: ', error);

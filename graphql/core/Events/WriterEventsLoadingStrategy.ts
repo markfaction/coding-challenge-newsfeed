@@ -36,7 +36,7 @@ export default class WriterEventsLoadingStrategy implements IEventsLoadingStrate
                 value: {
                     id: writer.id,
                     name: writer.name,
-                    bio: writer.bio,
+                    bio: writer.bio || "No Bio Provided...",
                     fellowship: writer.fellowship,
                     avatar_url: writer.avatar_url,
                     projects: [],

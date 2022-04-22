@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import {useQuery, gql} from '@apollo/client';
+import Link from 'next/link';
 import {User, Project, Announcement, FeedItem} from '../../common/types';
 import Layout from '../../components/Layout';
 import UserCard from '../../components/UserCard';
@@ -12,7 +13,10 @@ const FEED_ITEMS_QUERY = gql`
     feedItems(feedType: $feedType) {
       id
       created
-      type
+      type<Link href={{
+        pathname: '/',
+        query: {},
+      }}>Back To Home Page</Link>
       value {
         __typename
         ... on User {
@@ -88,17 +92,18 @@ export default function NewsFeed() {
         }
       );
     
-    
     const feedItems = data?.feedItems;
-
     
     if (!feedItems || loading || error) {
         return null;
     }
 
-
     return <>
-        <h1>News Feed type received: {feedTypeValue}</h1>
+        <h1>News feed for: {feedTypeValue}</h1>
+        <Link href={{
+          pathname: '/',
+          query: {},
+        }}>Back To Home Page</Link>
         <Layout>
             {displayFeedItems(feedItems)}
         </Layout>
