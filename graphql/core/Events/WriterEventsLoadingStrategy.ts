@@ -1,16 +1,17 @@
 import IEventsLoadingStrategy from "./interfaces/IEventsLoadingStrategy";
 import { FeedItem } from "common/types";
-import {getAnnouncementsForWriters} from './query/getAnnouncements';
+import {getAnnouncementsForFellowship} from './query/getAnnouncements';
 import {getWriters} from './query/getUsers';
 import { AnnouncementRow, UserRow } from "graphql/db";
 import getUniqueUniversalId from './../../utils/UUIDGenerator';
+import { FELLOWSHIP } from "common/constants/fellowship";
 
 export default class WriterEventsLoadingStrategy implements IEventsLoadingStrategy {
 
     public async execute(): Promise<Array<FeedItem>> {
 
         // Writers are interested in announcements targeting writers and all users
-        const announcements: AnnouncementRow[] = await getAnnouncementsForWriters();
+        const announcements: AnnouncementRow[] = await getAnnouncementsForFellowship(FELLOWSHIP.WRITERS);
 
         const announcementFeedItems: FeedItem[] = announcements.map((announcement) => {
             return {

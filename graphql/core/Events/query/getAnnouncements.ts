@@ -1,34 +1,13 @@
 import db, {AnnouncementRow} from '../../../db';
+import { FELLOWSHIP } from 'common/constants/fellowship';
 
-export async function getAnnouncementsForWriters(): Promise<AnnouncementRow[]> {
+export async function getAnnouncementsForFellowship(argVal: String): Promise<AnnouncementRow[]> {
     const announcements: Array<AnnouncementRow> | undefined = await db.getAll(
-        "SELECT * FROM announcements WHERE fellowship IN ('all', 'writers')",
-        []
+        "SELECT * FROM announcements WHERE fellowship IN (?, ?)",
+        [FELLOWSHIP.ALL, argVal]
     )
     if (!announcements) {
-        throw new Error(`Announcements not found for writers`);
-    }
-    return announcements;
-}
-
-export async function getAnnouncementsForFounders(): Promise<AnnouncementRow[]> {
-    const announcements: Array<AnnouncementRow> | undefined = await db.getAll(
-        "SELECT * FROM announcements WHERE fellowship IN ('all', 'founders')",
-        []
-    )
-    if (!announcements) {
-        throw new Error(`Announcements not found for founders`);
-    }
-    return announcements;
-}
-
-export async function getAnnouncementsForAngels(): Promise<AnnouncementRow[]> {
-    const announcements: Array<AnnouncementRow> | undefined = await db.getAll(
-        "SELECT * FROM announcements WHERE fellowship IN ('all', 'angels')",
-        []
-    )
-    if (!announcements) {
-        throw new Error(`Announcements not found for angels`);
+        throw new Error(`Announcements not found`);
     }
     return announcements;
 }

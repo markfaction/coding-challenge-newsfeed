@@ -1,15 +1,16 @@
 import IEventsLoadingStrategy from "./interfaces/IEventsLoadingStrategy";
 import { FeedItem } from "common/types";
-import { getAnnouncementsForAngels } from './query/getAnnouncements';
+import { getAnnouncementsForFellowship } from './query/getAnnouncements';
 import { getFoundersAndAngels } from './query/getUsers';
 import { getFounderProjects } from './query/getProjects';
 import { AnnouncementRow, UserRow, ProjectRow } from "graphql/db";
 import getUniqueUniversalId from './../../utils/UUIDGenerator';
+import { FELLOWSHIP } from "common/constants/fellowship";
 
 export default class AngelEventsLoadingStrategy implements IEventsLoadingStrategy {
     public async execute(): Promise<Array<FeedItem>> {
         // Angels are interested in announcements targeting angels and all users
-        const announcements: AnnouncementRow[] = await getAnnouncementsForAngels();
+        const announcements: AnnouncementRow[] = await getAnnouncementsForFellowship(FELLOWSHIP.ANGELS);
         const announcementFeedItems: FeedItem[] = announcements.map((announcement) => {
             return {
                 id: getUniqueUniversalId(),
