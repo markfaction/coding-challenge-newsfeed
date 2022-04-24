@@ -21,8 +21,9 @@ export default class FellowShipEventsLoader {
               );
             
             return sortedFeedItems;
-        } catch (error) {
-            console.log('Error: ', error);
+        } catch (error: any) {
+            console.log(`Error: ${error.message}`);
+            console.log(`Error Stacktrace: ${error.stack}`);
         }
         return [];
     }
