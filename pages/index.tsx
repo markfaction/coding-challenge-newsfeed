@@ -2,8 +2,19 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Layout from 'components/Layout'
 import {FeedType} from '../common/enums';
+import { useApolloClient } from '@apollo/client';
+import { useEffect } from 'react';
 
 export default function Home() {
+
+  const apolloClientCache = useApolloClient().cache;
+
+  useEffect(() => {  
+    //TODO: Need to evict the specific FeedItems loaded and call cache.gc
+    // Currently evicting whole cache as only feed items are cached in this POC
+    apolloClientCache.evict({});
+  }, []);
+
   return (
     <Layout>
       <Head>

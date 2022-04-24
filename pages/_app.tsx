@@ -17,7 +17,27 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 const client = new ApolloClient({
   uri: '/api/graphql',
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          feedItems: {
+            keyArgs: false,
+          }
+        }
+      },
+      FeedPage: {
+        fields: {
+          list: {
+            merge(existing = [], incoming) {
+              return [...existing, ...incoming];
+            }
+          },
+        },
+      },
+
+    },
+  }),
 })
 
 const theme = {

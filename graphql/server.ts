@@ -35,10 +35,16 @@ const typeDefs = gql`
     value: FeedItemValue,
   }
 
+  type FeedPage {
+    id: Int!
+    hasNext: Boolean,
+    list: [FeedItem],
+  }
+
   type Query {
     project(id: Int!): Project!
     user(id: Int!): User!
-    feedItems(feedType: String!): [FeedItem]
+    feedItems(feedType: String!, offSet: Int, limit: Int): FeedPage!
   }
 `;
 
